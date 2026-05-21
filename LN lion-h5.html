@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>岭南醒狮文化闯关</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family: "Microsoft YaHei",sans-serif}
+        body{background:#fff5e6}
+        .page{width:100vw;height:100vh;display:none;align-items:center;justify-content:center;padding:20px}
+        .page.active{display:flex}
+        .box{max-width:400px;background:white;border-radius:20px;padding:30px;text-align:center;box-shadow:0 4px 15px rgba(0,0,0,0.1)}
+        h1{color:#c8102e;margin-bottom:15px}
+        p{color:#666;margin:10px 0;line-height:1.6}
+        .culture{background:#fff0d8;padding:15px;border-radius:12px;margin:10px 0;text-align:left}
+        .btn{width:100%;background:#c8102e;color:white;border:none;border-radius:30px;padding:14px;margin:10px 0;font-size:16px}
+        .lion{width:160px;height:160px;background:radial-gradient(circle,#ffd700 0%,#c8102e 70%);border-radius:50%;margin:20px auto;position:relative}
+        .eye{width:20px;height:20px;background:black;border-radius:50%;position:absolute;top:60px;opacity:0;transition:0.3s}
+        #eyeL{left:40px}
+        #eyeR{right:40px}
+        .drum{width:80px;height:80px;background:#c8102e;color:white;border-radius:15px;display:inline-flex;align-items:center;justify-content:center;margin:5px}
+        .ans{border:1px solid #c8102e;padding:12px;border-radius:12px;margin:10px 0}
+    </style>
+</head>
+<body>
+
+<!-- 1 封面 -->
+<div class="page active" id="p1">
+    <div class="box">
+        <div class="lion"></div>
+        <h1>岭南醒狮文化闯关</h1>
+        <p>非遗文化 | 趣味游戏 | 知识学习</p>
+        <button class="btn" onclick="g(2)">开始闯关</button>
+    </div>
+</div>
+
+<!-- 2 文化 -->
+<div class="page" id="p2">
+    <div class="box">
+        <h1>醒狮小知识</h1>
+        <div class="culture">🦁 醒狮是【国家级非物质文化遗产】</div>
+        <div class="culture">✨ 点睛仪式：唤醒瑞狮，驱邪纳福</div>
+        <div class="culture">🥁 鼓点指挥醒狮的跳跃、舞动、采青</div>
+        <button class="btn" onclick="g(3)">第一关：醒狮点睛</button>
+    </div>
+</div>
+
+<!-- 3 点睛 -->
+<div class="page" id="p3">
+    <div class="box">
+        <h1>第一关：醒狮点睛</h1>
+        <p>鼠标/手指从左向右滑动点亮眼睛</p>
+        <div class="lion" id="lionBox">
+            <div class="eye" id="eyeL"></div>
+            <div class="eye" id="eyeR"></div>
+        </div>
+        <button class="btn" onclick="g(4)">第二关：醒狮鼓点</button>
+    </div>
+</div>
+
+<!-- 4 鼓点 -->
+<div class="page" id="p4">
+    <div class="box">
+        <h1>第二关：醒狮鼓点</h1>
+        <div>
+            <div class="drum" onclick="alert('慢鼓：巡游行礼')">慢鼓</div>
+            <div class="drum" onclick="alert('快鼓：跳跃舞动')">快鼓</div>
+            <div class="drum" onclick="alert('重鼓：采青纳福')">重鼓</div>
+        </div>
+        <button class="btn" onclick="g(5)">第三关：知识答题</button>
+    </div>
+</div>
+
+<!-- 5 答题 -->
+<div class="page" id="p5">
+    <div class="box">
+        <h1>第三关：文化答题</h1>
+        <p>醒狮属于几级非遗？</p>
+        <div class="ans" onclick="alert('正确！');g(6)">国家级非物质文化遗产</div>
+        <div class="ans" onclick="alert('不正确')">省级</div>
+        <div class="ans" onclick="alert('不正确')">市级</div>
+    </div>
+</div>
+
+<!-- 6 证书 -->
+<div class="page" id="p6">
+    <div class="box">
+        <h1>🎉 闯关成功</h1>
+        <p>你已成为【岭南醒狮文化传承人】</p>
+        <div class="culture">
+            你学会了：<br>
+            ✅ 醒狮点睛仪式<br>
+            ✅ 鼓点节奏知识<br>
+            ✅ 醒狮非遗等级
+        </div>
+        <button class="btn" onclick="g(1)">重新开始</button>
+    </div>
+</div>
+
+<script>
+function g(n){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.getElementById('p'+n).classList.add('active');
+}
+
+let b = document.getElementById('lionBox');
+let l = document.getElementById('eyeL');
+let r = document.getElementById('eyeR');
+
+b.addEventListener('mousemove',e=>{
+    let x = e.clientX;
+    if(x>120) l.style.opacity=1;
+    if(x>220) r.style.opacity=1;
+})
+b.addEventListener('touchmove',e=>{
+    let x = e.touches[0].clientX;
+    if(x>120) l.style.opacity=1;
+    if(x>220) r.style.opacity=1;
+})
+</script>
+</body>
+</html>
